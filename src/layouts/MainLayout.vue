@@ -1,81 +1,134 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
-        <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
-
-        <q-toolbar-title> Quasar App </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
+  <q-layout view="hHh Lpr fFf">
+    <q-header
+      style="position: fixed; width: auto; top: 0; left: 0; z-index: 10; margin-left: 0px"
+      class="header"
+    >
+      <q-toolbar style="height: 100px">
+        <div align="left" class="justify-start" style="width: 100px">
+          <q-img src="../assets/images/logo/logo.svg" style="height: 60px; max-width: 60px" />
+        </div>
+        <q-card-section align="center" style="width: 100%">
+          <h5 class="header-name q-ma-sm">ПрофСтройСервис</h5>
+          <p class="header-subname">Весь спектр строительных услуг</p>
+        </q-card-section>
+        <q-separator
+          color="white"
+          vertical
+          align="right"
+          :style="{ height: heightScreen + 'px', position: 'fixed', right: '100px' }"
+        />
+        <q-btn flat square class="main__layout-contact__btn"> КОНТАКТЫ </q-btn>
       </q-toolbar>
+      <hr class="q-ma-none" size="1" color="white" />
     </q-header>
-
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
-      <q-list>
-        <q-item-label header> Essential Links </q-item-label>
-
-        <EssentialLink v-for="link in linksList" :key="link.title" v-bind="link" />
-      </q-list>
-    </q-drawer>
-
-    <q-page-container>
-      <router-view />
+    <q-page-container style="margin-top: 0; padding-top: 0">
+      <q-btn
+        flat
+        :style="{ height: heightScreen + 'px', width: '100px', position: 'fixed' }"
+        class="main__layout-menu__btn"
+        @click="isMenuDialog = !isMenuDialog"
+      >
+        МЕНЮ
+      </q-btn>
+      <q-dialog square maximized v-model="isMenuDialog" backdrop-filter="brightness(25%)">
+        <MainLayoutMenuDialog />
+      </q-dialog>
+      <q-page>
+        <router-view />
+      </q-page>
+      <q-page-scroller position="bottom-right" :scroll-offset="150" :offset="[18, 18]">
+        <q-btn fab icon="keyboard_arrow_up" color="primary" />
+      </q-page-scroller>
     </q-page-container>
+    <MainLayoutFooter />
   </q-layout>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue';
-import EssentialLink, { type EssentialLinkProps } from 'components/EssentialLink.vue';
+<script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import MainLayoutMenuDialog from 'src/components/layout/MainLayoutMenuDialog.vue'
+import MainLayoutFooter from 'src/components/layout/MainLayoutFooter.vue'
 
-const linksList: EssentialLinkProps[] = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev',
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework',
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev',
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev',
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev',
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev',
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev',
-  },
-];
+const widthScreen = ref(window.innerWidth)
+const heightScreen = ref(window.innerHeight)
 
-const leftDrawerOpen = ref(false);
+const isMenuDialog = ref(false)
 
-function toggleLeftDrawer() {
-  leftDrawerOpen.value = !leftDrawerOpen.value;
+const onResize = () => {
+  widthScreen.value = window.innerWidth
+  heightScreen.value = window.innerHeight
 }
+
+onMounted(() => {
+  window.addEventListener('resize', onResize)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', onResize)
+})
 </script>
+<style scoped lang="scss">
+.hide-header {
+  top: -150px;
+}
+.header {
+  backdrop-filter: blur(30px); /* размывает задний слой */
+  -webkit-backdrop-filter: blur(30px); /* для Safari */
+  &-name {
+    font-family: 'Montserrat';
+    color: $primary;
+    font-weight: 900;
+    font-size: 36px;
+  }
+  &-subname {
+    font-family: 'Montserrat';
+    color: white;
+    font-weight: 500;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 4%;
+  }
+}
+.main__layout {
+  &-menu__btn {
+    text-transform: uppercase;
+    writing-mode: sideways-lr;
+    font-family: 'Montserrat';
+    font-weight: 300;
+    font-size: 30px;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    color: $primary !important;
+    border-right: 1px solid white;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.39);
+    }
+  }
+  &-contact__btn {
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    right: 0;
+    font-family: 'Montserrat';
+    font-weight: 500;
+    background-color: $primary;
+  }
+}
+:deep(.q-layout__section--marginal) {
+  background-color: transparent;
+  color: #fff !important;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 700,
+    'GRAD' 0,
+    'opsz' 24;
+}
+:deep(.q-dialog__inner--minimized) {
+  padding: 0px !important;
+}
+</style>
