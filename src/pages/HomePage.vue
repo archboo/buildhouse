@@ -3,7 +3,7 @@
       <AppImage src="assets/images/home/main-banner.png" alt="Banner" />
     <q-img
       class="home-banner__img"
-     :src="bannerImage"
+      src="/buildhouse/images/home/main-banner.png"
       :style="{ height: heightScreen + 'px', width: widthScreen + 'px - 15px' }"
     />
     <div class="home-banner__text">
@@ -53,16 +53,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import HomeBuildOption from 'src/components/home/HomeBuildOption.vue'
 import HomeFeedback from 'src/components/home/HomeFeedback.vue'
 // import { BASE_URL } from 'src/config/index';
-import { getAssetPath } from 'src/config';
+// import { getAssetPath } from 'src/config';
 import AppImage from '../components/configHelper.vue';
 
-    const bannerImage = computed(() => 
-      getAssetPath('assets/images/home/main-banner.png')
-    );
+    // const bannerImage = computed(() => 
+    //   getAssetPath('assets/images/home/main-banner.png')
+    // );
 
 const widthScreen = ref(window.innerWidth)
 const heightScreen = ref(window.innerHeight)

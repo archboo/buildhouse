@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { quasar, transformAssetUrls } from '@quasar/vite-plugin';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 export default defineConfig({
   plugins: [
@@ -9,18 +10,20 @@ export default defineConfig({
     }),
     quasar({
       sassVariables: 'src/quasar-variables.sass'
+    }),
+    viteStaticCopy({
+      targets: [
+        {
+          src: 'public/assets/*',
+          dest: 'assets'
+        }
+      ]
     })
   ],
   base: '/buildhouse/',
   build: {
+    outDir: 'dist/spa',
     assetsDir: 'assets',
-    assetsInlineLimit: 4096,
-    rollupOptions: {
-      output: {
-        assetFileNames: 'assets/[name]-[hash][extname]',
-        chunkFileNames: 'assets/[name]-[hash].js',
-        entryFileNames: 'assets/[name]-[hash].js',
-      }
-    }
+        emptyOutDir: true,
   }
 });
