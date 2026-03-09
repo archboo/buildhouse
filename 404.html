@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>BuildHouse - Перенаправление</title>
+  <script>
+    // Сохраняем путь для последующего восстановления
+    sessionStorage.redirect = location.href;
+  </script>
+  <meta http-equiv="refresh" content="0;URL='/buildhouse/'">
+</head>
+<body>
+  <h1>Перенаправление на главную...</h1>
+  <p>Если вы не перенаправлены автоматически, <a href="/buildhouse/">нажмите здесь</a>.</p>
+  <script>
+    if (!sessionStorage.redirect) {
+      location.href = '/buildhouse/';
+    } else {
+      // Восстанавливаем исходный путь после загрузки главной страницы
+      const redirect = sessionStorage.redirect;
+      sessionStorage.removeItem('redirect');
+      const baseUrl = '/buildhouse';
+      const path = redirect.replace(window.location.origin + baseUrl, '') || '/';
+      location.href = baseUrl + '#' + path;
+    }
+  </script>
+</body>
+</html>
