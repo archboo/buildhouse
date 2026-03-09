@@ -2,7 +2,7 @@
   <div class="home-banner">
     <q-img
       class="home-banner__img"
-      src="../assets/images/home/main-banner.png"
+     :src="asset('assets/images/home/main-banner.png')"
       :style="{ height: heightScreen + 'px', width: widthScreen + 'px - 15px' }"
     />
     <div class="home-banner__text">
@@ -55,6 +55,8 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import HomeBuildOption from 'src/components/home/HomeBuildOption.vue'
 import HomeFeedback from 'src/components/home/HomeFeedback.vue'
+import { asset } from 'src/config';
+
 
 const widthScreen = ref(window.innerWidth)
 const heightScreen = ref(window.innerHeight)
