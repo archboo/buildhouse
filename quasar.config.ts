@@ -65,7 +65,61 @@ export default defineConfig((/* ctx */) => {
 
       // extendViteConf (viteConf) {},
       // viteVuePluginOptions: {},
-      
+extendViteConf(viteConf: any) {
+        viteConf.base = '/buildhouse/';
+        
+        // Важно! Правильная обработка ассетов
+        viteConf.build = {
+          ...viteConf.build,
+          assetsDir: 'assets',
+          assetsInlineLimit: 4096, // 4kb
+          
+          // Настройка rollup для правильных имен файлов
+          rollupOptions: {
+            output: {
+              // Форматы имен с правильными расширениями
+              assetFileNames: (assetInfo: any) => {
+                // Проверяем, что name существует
+                if (!assetInfo || !assetInfo.name) {
+                  return 'assets/[name]-[hash][extname]';
+                }
+                
+                const name = assetInfo.name;
+                
+                // Для CSS файлов
+                if (/\.(css)$/.test(name)) {
+                  return 'assets/[name]-[hash][extname]';
+                }
+                
+                // Для изображений
+                if (/\.(png|jpe?g|gif|svg|webp|ico)$/.test(name)) {
+                  return 'assets/[name]-[hash][extname]';
+                }
+                
+                // Для шрифтов
+                if (/\.(woff2?|ttf|eot|otf)$/.test(name)) {
+                  return 'assets/[name]-[hash][extname]';
+                }
+                
+                // Для остальных файлов
+                return 'assets/[name]-[hash][extname]';
+              },
+              
+              // Для чанков JS
+              chunkFileNames: 'assets/[name]-[hash].js',
+              entryFileNames: 'assets/[name]-[hash].js',
+            }
+          }
+        };
+      },
+        viteVuePluginOptions: {
+    template: {
+      transformAssetUrls: {
+        base: '/buildhouse',
+        includeAbsolute: false,
+      }
+    }
+  },
       vitePlugins: [
         ['vite-plugin-checker', {
           vueTsc: true,
