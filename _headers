@@ -1,0 +1,8 @@
+# public/_headers
+/assets/*
+  Content-Type: application/javascript
+  Content-Type: text/css
+  Content-Type: image/png
+  Content-Type: image/svg+xml
+  Content-Type: font/woff
+  Content-Type: font/woff2
