@@ -12,7 +12,7 @@
     "dev": "quasar dev",
     "build": "quasar build",
     "deploy": "push-dir --dir=dist/spa --remote=origin --branch=gh-pages",
-    "postinstall": "quasar prepare"
+"postbuild": "powershell -Command \"(Get-Content dist/spa/index.html) -replace 'href=\"/assets', 'href=\"assets' | Set-Content dist/spa/index.html\" && powershell -Command \"(Get-Content dist/spa/index.html) -replace 'src=\"/assets', 'src=\"assets' | Set-Content dist/spa/index.html\"",    "postinstall": "quasar prepare"
   },
   "dependencies": {
     "@quasar/extras": "^1.16.4",
