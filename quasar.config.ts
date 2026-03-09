@@ -65,49 +65,20 @@ export default defineConfig((/* ctx */) => {
 
       // extendViteConf (viteConf) {},
       // viteVuePluginOptions: {},
-extendViteConf(viteConf: any) {
+    extendViteConf(viteConf: any) {
         viteConf.base = '/buildhouse/';
         
-        // Важно! Правильная обработка ассетов
+        // Фиксируем имена файлов без хэшей или с предсказуемыми хэшами
         viteConf.build = {
           ...viteConf.build,
           assetsDir: 'assets',
-          assetsInlineLimit: 4096, // 4kb
-          
-          // Настройка rollup для правильных имен файлов
+          // Отключаем хэширование в именах файлов (для теста)
           rollupOptions: {
             output: {
-              // Форматы имен с правильными расширениями
-              assetFileNames: (assetInfo: any) => {
-                // Проверяем, что name существует
-                if (!assetInfo || !assetInfo.name) {
-                  return 'assets/[name]-[hash][extname]';
-                }
-                
-                const name = assetInfo.name;
-                
-                // Для CSS файлов
-                if (/\.(css)$/.test(name)) {
-                  return 'assets/[name]-[hash][extname]';
-                }
-                
-                // Для изображений
-                if (/\.(png|jpe?g|gif|svg|webp|ico)$/.test(name)) {
-                  return 'assets/[name]-[hash][extname]';
-                }
-                
-                // Для шрифтов
-                if (/\.(woff2?|ttf|eot|otf)$/.test(name)) {
-                  return 'assets/[name]-[hash][extname]';
-                }
-                
-                // Для остальных файлов
-                return 'assets/[name]-[hash][extname]';
-              },
-              
-              // Для чанков JS
-              chunkFileNames: 'assets/[name]-[hash].js',
-              entryFileNames: 'assets/[name]-[hash].js',
+              // Используем простые имена без хэшей
+              entryFileNames: 'assets/[name].js',
+              chunkFileNames: 'assets/[name].js',
+              assetFileNames: 'assets/[name].[ext]'
             }
           }
         };
