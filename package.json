@@ -11,7 +11,7 @@
     "test": "echo \"No test specified\" && exit 0",
     "dev": "quasar dev",
     "build": "quasar build",
-    "deploy": "push-dir --dir=dist/spa --remote=gh-pages --branch=master",
+    "deploy": "push-dir --dir=dist/spa --remote=origin --branch=gh-pages",
     "postinstall": "quasar prepare"
   },
   "dependencies": {
@@ -39,7 +39,7 @@
     "vue-tsc": "^3.0.7"
   },
   "engines": {
-    "node": "^28 ||^27 || ^26 || ^24 || ^22 || ^20",
+    "node": "^28 ||^27 || ^26 || ^25 || ^24 || ^22 || ^20",
     "npm": ">= 6.13.4",
     "yarn": ">= 1.21.1",
     "pnpm": ">= 10.0.0"
