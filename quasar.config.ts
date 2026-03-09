@@ -65,20 +65,22 @@ export default defineConfig((/* ctx */) => {
 
       // extendViteConf (viteConf) {},
       // viteVuePluginOptions: {},
-    extendViteConf(viteConf: any) {
+extendViteConf(viteConf: any) {
         viteConf.base = '/buildhouse/';
         
-        // Фиксируем имена файлов без хэшей или с предсказуемыми хэшами
         viteConf.build = {
           ...viteConf.build,
           assetsDir: 'assets',
-          // Отключаем хэширование в именах файлов (для теста)
           rollupOptions: {
             output: {
-              // Используем простые имена без хэшей
+              // Убираем подчеркивание из имен файлов
               entryFileNames: 'assets/[name].js',
               chunkFileNames: 'assets/[name].js',
-              assetFileNames: 'assets/[name].[ext]'
+              assetFileNames: 'assets/[name].[ext]',
+              // Санитайзим имена, убирая подчеркивание
+              sanitizeFileName: (name) => {
+                return name.replace(/^_/, '').replace(/[^a-zA-Z0-9.-]/g, '-');
+              }
             }
           }
         };
