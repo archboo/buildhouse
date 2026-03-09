@@ -78,7 +78,7 @@ extendViteConf(viteConf: any) {
               chunkFileNames: 'assets/[name].js',
               assetFileNames: 'assets/[name].[ext]',
               // Санитайзим имена, убирая подчеркивание
-              sanitizeFileName: (name) => {
+              sanitizeFileName: (name: string) => {
                 return name.replace(/^_/, '').replace(/[^a-zA-Z0-9.-]/g, '-');
               }
             }
