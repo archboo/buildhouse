@@ -7,39 +7,29 @@ import {
 } from 'vue-router'
 import routes from './routes'
 
+// Задайте свой базовый путь, совпадающий с названием репозитория на GitHub Pages или вашими настройками
+const BASE_PATH = '/buildhouse/'; // замените на свой реальный репозиторий или путь
+
 /*
- * If not building with SSR mode, you can
- * directly export the Router instantiation;
- *
- * The function below can be async too; either use
- * async/await or return a Promise which resolves
- * with the Router instance.
+ * Если не используется SSR, можно экспортировать маршрут в реальном объекте.
+ * Создайте роутер с нужным типом истории.
  */
 
 export default defineRouter(function (/* { store, ssrContext } */) {
+  // Определите функцию создания истории в зависимости от режима
   const createHistory = process.env.SERVER
     ? createMemoryHistory
     : process.env.VUE_ROUTER_MODE === 'history'
-      ? createWebHistory
-      : createWebHashHistory
+      ? () => createWebHistory(BASE_PATH)
+      : () => createWebHashHistory(BASE_PATH)
 
+  // Создайте роутер с нужной историей и маршрутами
   const Router = createRouter({
     scrollBehavior: () => ({ left: 0, top: 0 }),
     routes,
-
-    // Leave this as is and make changes in quasar.conf.js instead!
-    // quasar.conf.js -> build -> vueRouterMode
-    // quasar.conf.js -> build -> publicPath
-    history: createHistory(process.env.VUE_ROUTER_BASE),
+    // Используйте явно заданный базовый путь
+    history: createHistory(),
   })
 
   return Router
 })
-// import { createRouter, createWebHashHistory } from 'vue-router'
-// // или, если использовали только vue-router 4 и Quasar — так:
-// import routes from './routes'
-// const router = createRouter({
-//   history: createWebHashHistory(),
-//   routes,
-// })
-// export default router
