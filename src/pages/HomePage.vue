@@ -25,15 +25,7 @@
     class="home__map flex justify_between"
   >
     <q-card-section class="home__map-img">
-      <q-img
-        class="home__map-img__wrp"
-        src="../assets/images/home/map_wihte.png"
-        fit="contain"
-        height="100%"
-        width="100%"
-      ></q-img>
-          <imageComponentHelper src="/images/home/map_wihte.png" alt="Banner" fit="contain" height="100%" width="100%" class="home__map-img__wrp"/>
-
+      <imageComponentHelper src="/images/home/map_wihte.png" alt="Banner" fit="contain" height="100%" width="100%" class="home__map-img__wrp"/>
     </q-card-section>
     <q-card-section class="home__map-text">
       <p>ГДЕ ПРЕДСТАВЛЕНА <span>НАША КОМПАНИЯ</span></p>
