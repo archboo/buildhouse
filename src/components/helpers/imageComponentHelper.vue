@@ -1,14 +1,14 @@
 <template>
-  <img 
+  <q-img 
     :src="imagePath" 
     :alt="alt"
     v-bind="$attrs"
-  >
+  />
 </template>
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
-import { getAssetPath } from 'src/config';
+import { getAssetPath } from 'src/config/imagePath';
 
 export default defineComponent({
   name: 'AppImage',

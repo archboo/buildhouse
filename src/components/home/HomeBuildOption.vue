@@ -10,11 +10,7 @@
     square
   >
     <q-card-section class="q-ma-none q-pa-none construction__img">
-      <q-img
-        src="../../assets/images/home/main-banner.png"
-        style="height: 100%"
-        fit="cover"
-      ></q-img>
+      <imageComponentHelper :src="item.img" style="height: 100%" fit="cover"/>
       <div
         :style="{
           position: 'absolute',
@@ -43,10 +39,12 @@
   </q-card>
 </template>
 <script setup lang="ts">
+import imageComponentHelper from '../helpers/imageComponentHelper.vue';
+
 const optionArray = [
   {
     id: 1,
-    img: '../../assets/images/home/main-banner.png',
+    img: '/images/home/main-banner.png',
     title:
       'Строим дома <p style="font-weight:800; text-transform: uppercase">Под ключ с гарантией</p>',
     subtitle:
@@ -54,7 +52,7 @@ const optionArray = [
   },
   {
     id: 2,
-    img: '../../assets/images/home/main-banner.png',
+    img: '/images/home/main-banner.png',
     title:
       'Проводим устройство <p style="font-weight:800; text-transform: uppercase" class="q-ma-none">Новой кровли</p> или ремонтируем старую',
     subtitle:
@@ -62,7 +60,7 @@ const optionArray = [
   },
   {
     id: 3,
-    img: '../../assets/images/home/main-banner.png',
+    img: '/images/home/main-banner.png',
     title:
       'СТРОИМ РАЗЛИЧНЫЕ ФУНДАМЕНТЫ <p style="font-weight:800; text-transform: uppercase">ПО СОВРЕМЕННЫМ ТЕХНОЛОГИЯМ</p>',
     subtitle:
@@ -70,7 +68,7 @@ const optionArray = [
   },
   {
     id: 4,
-    img: '../../assets/images/home/main-banner.png',
+    img: '/images/home/main-banner.png',
     title:
       'СТРОИМ ЗАБОРЫ ВОРОТА, НАВЕСЫ <p style="font-weight:800; text-transform: uppercase">В СРОК И С ГАРАНТИЕЙ</p>',
     subtitle:

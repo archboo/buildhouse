@@ -1,11 +1,6 @@
 <template>
   <div class="home-banner">
-      <AppImage src="assets/images/home/main-banner.png" alt="Banner" />
-    <q-img
-      class="home-banner__img"
-      src="/buildhouse/images/home/main-banner.png"
-      :style="{ height: heightScreen + 'px', width: widthScreen + 'px - 15px' }"
-    />
+    <imageComponentHelper src="/images/home/main-banner.png" alt="Banner" class="home-banner__img" :style="{ height: heightScreen + 'px', width: widthScreen + 'px - 15px' }"/>
     <div class="home-banner__text">
       <p>СТРОИТЕЛЬНАЯ КОМПАНИЯ ПрофСтройСервис</p>
       <p>
@@ -37,6 +32,8 @@
         height="100%"
         width="100%"
       ></q-img>
+          <imageComponentHelper src="/images/home/map_wihte.png" alt="Banner" fit="contain" height="100%" width="100%" class="home__map-img__wrp"/>
+
     </q-card-section>
     <q-card-section class="home__map-text">
       <p>ГДЕ ПРЕДСТАВЛЕНА <span>НАША КОМПАНИЯ</span></p>
@@ -56,13 +53,7 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import HomeBuildOption from 'src/components/home/HomeBuildOption.vue'
 import HomeFeedback from 'src/components/home/HomeFeedback.vue'
-// import { BASE_URL } from 'src/config/index';
-// import { getAssetPath } from 'src/config';
-import AppImage from '../components/configHelper.vue';
-
-    // const bannerImage = computed(() => 
-    //   getAssetPath('assets/images/home/main-banner.png')
-    // );
+import imageComponentHelper from '../components/helpers/imageComponentHelper.vue';
 
 const widthScreen = ref(window.innerWidth)
 const heightScreen = ref(window.innerHeight)
