@@ -1,37 +1,74 @@
 <template>
   <q-card class="dialog q-pa-none" style="width: 100%; height: 100%">
-    <q-card-section class="flex justify-between items-start q-pa-none dialog-wrp">
+    <q-card-section
+      class="flex justify-between items-start q-pa-none dialog-wrp"
+    >
       <q-card-section class="q-pt-none dialog__menu">
-        <q-item>
+        <q-item :class="widthScreen < 768 ? 'q-px-none' : ''">
           <q-item-section>
-            <header-toolbar-link link="/" label="Главная" />
+            <header-toolbar-link
+              :class="widthScreen < 768 ? 'q-px-none' : ''"
+              link="/"
+              label="Главная"
+            />
+          </q-item-section>
+          <q-item-section v-if="widthScreen <= 1280">
+            <q-btn
+              flat
+              dense
+              v-close-popup
+              class="dialog__btn-close__wrp items-end"
+            >
+              <div class="self-start dialog__btn-close__wrp-icon q-ma-md">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  :height="widthScreen < 768 ? '30px' : '50px'"
+                  viewBox="0 -960 960 960"
+                  :width="widthScreen < 768 ? '30px' : '50px'"
+                  fill="#FFFFFF"
+                >
+                  <path
+                    d="M256-227.69 227.69-256l224-224-224-224L256-732.31l224 224 224-224L732.31-704l-224 224 224 224L704-227.69l-224-224-224 224Z"
+                  />
+                </svg>
+              </div>
+            </q-btn>
           </q-item-section>
         </q-item>
-        <q-item>
+        <q-item :class="widthScreen < 768 ? 'q-px-none' : ''">
           <q-item-section>
-            <header-toolbar-link link="/doma" label="Строительство домов" />
+            <header-toolbar-link
+              :class="widthScreen < 768 ? 'q-px-none' : ''"
+              link="/doma"
+              label="Строительство домов"
+            />
             <q-item-section>
               <header-toolbar-link
+                :class="widthScreen < 768 ? 'q-px-none' : ''"
                 link="/doma/doma-iz-brusa"
                 label="Дома из бруса"
                 class="dialog__menu-sub__menu q-py-none q-my-none"
               />
               <header-toolbar-link
+                :class="widthScreen < 768 ? 'q-px-none' : ''"
                 link="/doma/doma-iz-kirpicha"
                 label="Дома из кирпича"
                 class="dialog__menu-sub__menu q-py-none q-my-none"
               />
               <header-toolbar-link
+                :class="widthScreen < 768 ? 'q-px-none' : ''"
                 link="/doma/doma-iz-gazoblokov"
                 label="Дома из газоблоков"
                 class="dialog__menu-sub__menu q-py-none q-my-none"
               />
               <header-toolbar-link
+                :class="widthScreen < 768 ? 'q-px-none' : ''"
                 link="/doma/karkasno-schitovye-doma-pod-klyuch"
                 label="Каркасно-щитовые дома"
                 class="dialog__menu-sub__menu q-py-none q-my-none"
               />
               <header-toolbar-link
+                :class="widthScreen < 768 ? 'q-px-none' : ''"
                 link="/doma/doma-iz-keramicheskih-blokov"
                 label="Дома из керамических блоков"
                 class="dialog__menu-sub__menu q-py-none q-my-none"
@@ -39,38 +76,67 @@
             </q-item-section>
           </q-item-section>
         </q-item>
-        <q-item class="q-my-none q-py-none btnbtn">
+        <q-item
+          class="q-my-none q-py-none btnbtn"
+          :class="widthScreen < 768 ? 'q-px-none' : ''"
+        >
           <q-item-section class="q-ma-none q-py-none">
             <header-toolbar-link
+              :class="widthScreen < 768 ? 'q-px-none' : ''"
               link="/katalog-proektov"
               label="Готовые проекты"
               class="q-ma-none q-py-none"
             />
           </q-item-section>
         </q-item>
-        <q-item>
+        <q-item :class="widthScreen < 768 ? 'q-px-none' : ''">
           <q-item-section class="q-ma-none q-py-none">
-            <header-toolbar-link link="/fundament" label="Фундамент" />
+            <header-toolbar-link
+              :class="widthScreen < 768 ? 'q-px-none' : ''"
+              link="/fundament"
+              label="Фундамент"
+            />
           </q-item-section>
         </q-item>
-        <q-item>
+        <q-item :class="widthScreen < 768 ? 'q-px-none' : ''">
           <q-item-section class="q-ma-none q-py-none">
-            <header-toolbar-link link="/krovlya" label="Кровля" />
+            <header-toolbar-link
+              link="/krovlya"
+              label="Кровля"
+              :class="widthScreen < 768 ? 'q-px-none' : ''"
+            />
           </q-item-section>
         </q-item>
-        <q-item>
+        <q-item :class="widthScreen < 768 ? 'q-px-none' : ''">
           <q-item-section class="q-ma-none q-py-none">
-            <header-toolbar-link link="/prochee" label="Прочее" />
+            <header-toolbar-link
+              link="/prochee"
+              label="Прочее"
+              :class="widthScreen < 768 ? 'q-px-none' : ''"
+            />
           </q-item-section>
         </q-item>
-        <q-item>
+        <q-item :class="widthScreen < 768 ? 'q-px-none' : ''">
           <q-item-section class="q-ma-none q-py-none">
-            <header-toolbar-link link="/o-nas" label="О нас" />
+            <header-toolbar-link
+              link="/o-nas"
+              label="О нас"
+              :class="widthScreen < 768 ? 'q-px-none' : ''"
+            />
           </q-item-section>
         </q-item>
       </q-card-section>
-      <q-card-actions align="right" class="q-pa-none dialog__btn-close">
-        <q-btn flat dense v-close-popup class="dialog__btn-close__wrp items-end">
+      <q-card-actions
+        v-if="widthScreen > 1280"
+        align="right"
+        class="q-pa-none dialog__btn-close"
+      >
+        <q-btn
+          flat
+          dense
+          v-close-popup
+          class="dialog__btn-close__wrp items-end"
+        >
           <div class="self-start dialog__btn-close__wrp-icon q-ma-md">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -91,7 +157,22 @@
 </template>
 
 <script setup lang="ts">
-import HeaderToolbarLink from './HeaderToolbarLink.vue'
+import { ref, onMounted, onBeforeUnmount } from "vue";
+import HeaderToolbarLink from "./HeaderToolbarLink.vue";
+
+const widthScreen = ref(window.innerWidth);
+const heightScreen = ref(window.innerHeight);
+const onResize = () => {
+  widthScreen.value = window.innerWidth;
+  heightScreen.value = window.innerHeight;
+};
+onMounted(() => {
+  window.addEventListener("resize", onResize);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", onResize);
+});
 </script>
 <style lang="scss">
 :deep(.q-item) {
@@ -137,6 +218,31 @@ import HeaderToolbarLink from './HeaderToolbarLink.vue'
       &-icon {
         color: white;
       }
+    }
+  }
+}
+@media (max-width: 1280px) {
+  .dialog {
+    &-wrp {
+      height: 100%;
+    }
+    &__menu {
+      width: 100%;
+      padding: 14px;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .dialog {
+    margin-left: 50px;
+    margin-top: 75px;
+    margin-right: 50px;
+    &-wrp {
+      height: 100%;
+    }
+    &__menu {
+      width: 100%;
+      padding: 10px;
     }
   }
 }

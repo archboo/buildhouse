@@ -14,9 +14,11 @@
           :rules="[
             (val) => {
               if (!val || val.length < 3) {
-                return 'Имя должно содержать минимум 3 символа'
+                return 'Имя должно содержать минимум 3 символа';
               }
-              return /^[A-Za-zА-Яа-яЁё]+$/.test(val) || 'Только буквы разрешены'
+              return (
+                /^[A-Za-zА-Яа-яЁё]+$/.test(val) || 'Только буквы разрешены'
+              );
             },
           ]"
         />
@@ -30,14 +32,17 @@
           :rules="[
             (val) => {
               if (!val) {
-                return 'Пожалуйста, введите номер телефона'
+                return 'Пожалуйста, введите номер телефона';
               }
-              const digitsOnly = val.replace(/\D/g, '')
+              const digitsOnly = val.replace(/\D/g, '');
               if (digitsOnly.length !== 11) {
-                console.log(digitsOnly.length)
-                return 'Неверная длина номера'
+                console.log(digitsOnly.length);
+                return 'Неверная длина номера';
               }
-              return /^\d+$/.test(digitsOnly) || 'Неверный формат, используйте только цифры'
+              return (
+                /^\d+$/.test(digitsOnly) ||
+                'Неверный формат, используйте только цифры'
+              );
             },
           ]"
         />
@@ -71,7 +76,14 @@
           multiple
         >
         </q-file>
-        <q-btn class="feedback__btn" outline square :loading="false" type="submit">Отправить</q-btn>
+        <q-btn
+          class="feedback__btn"
+          outline
+          square
+          :loading="false"
+          type="submit"
+          >Отправить</q-btn
+        >
       </q-form>
     </q-card-section>
   </q-card>
@@ -84,30 +96,32 @@
   </q-dialog>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const sent = ref(false)
+const sent = ref(false);
 const feedbackMessage = ref({
   name: null,
   mobile: null,
   email: null,
   text: null,
   file: null,
-})
+});
 
-const emailRegex = /^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/
-const requiredRule = (val?: string) => !!val || 'Обязательное поле'
-const emailRule = (val?: string) => (val && val.match(emailRegex) != null) || 'Некорректный email'
+const emailRegex = /^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/;
+const requiredRule = (val?: string) => !!val || "Обязательное поле";
+const emailRule = (val?: string) =>
+  (val && val.match(emailRegex) != null) || "Некорректный email";
 
 const onSubmit = () => {
-  sent.value = true
-}
+  sent.value = true;
+};
 </script>
 <style scoped lang="scss">
 .input {
   margin-bottom: 20px;
 }
 .feedback {
+  border-bottom: 1px solid white;
   background-color: #363432;
   &__dialog {
     width: 400px;
@@ -125,7 +139,7 @@ const onSubmit = () => {
     padding: 50px 0px 50px 150px;
     font-size: 36px;
     color: white;
-    font-family: 'Montserrat';
+    font-family: "Montserrat";
     :first-child {
       margin-bottom: 0px;
     }
@@ -137,6 +151,33 @@ const onSubmit = () => {
     color: $primary;
     width: 100% !important;
     height: 60px;
+  }
+}
+@media (max-width: 1280px) {
+  .feedback {
+    display: flex;
+    flex-direction: column;
+    &__title {
+      width: 100% !important;
+      font-size: 24px;
+    }
+    &__form {
+      padding: 0px 150px 75px 150px;
+      width: 100% !important;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .feedback {
+    &__title {
+      width: 100% !important;
+      padding: 50px 0px 20px 50px;
+      font-size: 20px;
+    }
+    &__form {
+      padding: 0px 50px 75px 50px;
+      width: 100% !important;
+    }
   }
 }
 </style>

@@ -16,15 +16,15 @@
   </router-link>
 </template>
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
-import type { RouteLocation } from 'vue-router'
+import { computed, defineComponent } from "vue";
+import type { RouteLocation } from "vue-router";
 
 type RouteProps = {
-  route: RouteLocation
-  href: string
-  isActive: boolean
-  isExactActive: boolean
-}
+  route: RouteLocation;
+  href: string;
+  isActive: boolean;
+  isExactActive: boolean;
+};
 export default defineComponent({
   props: {
     link: { type: String, required: true },
@@ -39,20 +39,20 @@ export default defineComponent({
         ...attrs,
         to: isExternalLink.value ? undefined : props.link,
         href: isExternalLink.value ? props.link : undefined,
-        color: route.isExactActive ? 'primary' : 'font',
-      }
-    }
-    const isExternalLink = computed(() => !props.link.startsWith('/'))
+        color: route.isExactActive ? "primary" : "font",
+      };
+    };
+    const isExternalLink = computed(() => !props.link.startsWith("/"));
     return {
       styleActiveBtn,
       isExternalLink,
-    }
+    };
   },
-})
+});
 </script>
 <style scoped lang="scss">
 .header__toolbar__link {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-weight: 600;
   text-transform: uppercase;
   font-size: 24px;
@@ -64,5 +64,15 @@ export default defineComponent({
 .btn:hover {
   background-color: transparent !important;
   color: $primary;
+}
+@media (max-width: 1280px) {
+  .header__toolbar__link {
+    font-size: 16px;
+  }
+}
+@media (max-width: 768px) {
+  .header__toolbar__link {
+    font-size: 12px;
+  }
 }
 </style>
