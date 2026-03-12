@@ -1,0 +1,1 @@
+import{_ as o}from"./-plugin-vue-export-helper.js";import{u as r,D as s,y as t}from"./index.js";const n={};function c(a,e){return r(),s("div",null,[...e[0]||(e[0]=[t("p",{style:{"font-size":"40px"}},"2",-1)])])}const l=o(n,[["render",c]]);export{l as default};
