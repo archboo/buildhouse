@@ -31,6 +31,18 @@
           right: '100px',
         }"
       />
+      <q-separator
+        v-if="widthScreen > 768"
+        color="white"
+        vertical
+        align="left"
+        class="separator"
+        :style="{
+          height: heightScreen + 'px',
+          position: 'fixed',
+          left: '100px',
+        }"
+      />
       <q-btn flat square class="main__layout-contact__btn"> КОНТАКТЫ </q-btn>
     </q-toolbar>
     <q-toolbar v-if="widthScreen < 768" style="height: 75px" class="q-pa-none">

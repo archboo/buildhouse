@@ -1,6 +1,6 @@
 <template>
   <q-card
-    v-for="item in optionArray"
+    v-for="item in props.items"
     :key="item.id"
     flat
     bordered
@@ -44,47 +44,38 @@
         <p class="construction__text-title" v-html="item.title"></p>
         <p class="construction__text-subtitle">{{ item.subtitle }}</p>
       </div>
-      <q-btn outline square label="подробнее" class="construction__text__btn" />
+      <q-btn
+        outline
+        square
+        label="подробнее"
+        class="construction__text__btn"
+        @click="handleBtnClick(item)"
+        v-if="!item.hideButton"
+      />
     </q-card-section>
   </q-card>
 </template>
 <script setup lang="ts">
 import imageComponentHelper from "../helpers/imageComponentHelper.vue";
 
-const optionArray = [
-  {
-    id: 1,
-    img: "/images/home/main-banner.png",
-    title:
-      'Строим дома <p style="font-weight:800; text-transform: uppercase">Под ключ с гарантией</p>',
-    subtitle:
-      "ПрофСтройСервис» предлагает желающим жить за городом построить дом под ключ, который будет выполнен в соответствии со всеми требованиями. Мы занимаемся возведением строений из разных материалов (кирпича, бруса, газоблоков и т.д.) в нескольких районах Московской области: Воскресенском, Раменском, Коломенском и Домодедовском.",
-  },
-  {
-    id: 2,
-    img: "/images/home/main-banner.png",
-    title:
-      'Проводим устройство <p style="font-weight:800; text-transform: uppercase" class="q-ma-none">Новой кровли</p> или ремонтируем старую',
-    subtitle:
-      "Одним из самых важных этапов строительства дома считается возведение крыши. От того, насколько качественным будет устройство кровли, зависит комфорт проживания людей. Наша компания предлагает выполнить кровельные работы в Воскресенском, Раменском, Коломенском и Домодедовском районах Московской области.",
-  },
-  {
-    id: 3,
-    img: "/images/home/main-banner.png",
-    title:
-      'СТРОИМ РАЗЛИЧНЫЕ ФУНДАМЕНТЫ <p style="font-weight:800; text-transform: uppercase">ПО СОВРЕМЕННЫМ ТЕХНОЛОГИЯМ</p>',
-    subtitle:
-      "Всем известно, что основой надежности и долговечности любого строения является фундамент. В нашей компании «ПрофСтойСервис» желающие могут заказать фундамент под ключ в нескольких районах Подмосковья. В их числе Воскресенский, Раменский, Коломенский и Домодедовский.",
-  },
-  {
-    id: 4,
-    img: "/images/home/main-banner.png",
-    title:
-      'СТРОИМ ЗАБОРЫ ВОРОТА, НАВЕСЫ <p style="font-weight:800; text-transform: uppercase">В СРОК И С ГАРАНТИЕЙ</p>',
-    subtitle:
-      "Одним из самых важных этапов строительства дома считается возведение крыши. От того, насколько качественным будет устройство кровли, зависит комфорт проживания людей. Наша компания предлагает выполнить кровельные работы в Воскресенском, Раменском, Коломенском и Домодедовском районах Московской области.",
-  },
-];
+export interface ConstructionItem {
+  id: number;
+  img: string;
+  title: string;
+  subtitle: string;
+  hideButton?: boolean;
+}
+
+const props = defineProps<{
+  items: ConstructionItem[];
+}>();
+
+const emit = defineEmits<{
+  (e: "btn-click", item: ConstructionItem): void;
+}>();
+const handleBtnClick = (item: ConstructionItem) => {
+  emit("btn-click", item);
+};
 </script>
 <style scoped lang="scss">
 .ref {

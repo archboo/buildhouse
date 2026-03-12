@@ -33,7 +33,7 @@
       газоблоков, клееного бруса, пеноблоков
     </p>
   </div>
-  <HomeBuildOption />
+  <HomeBuildOption :items="optionArray" @btn-click="handleBtnClick" />
   <div
     style="width: 100%; height: 600px; background-color: #141414"
     class="home__map flex justify_between"
@@ -65,7 +65,9 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from "vue";
-import HomeBuildOption from "src/components/home/HomeBuildOption.vue";
+import HomeBuildOption, {
+  type ConstructionItem,
+} from "src/components/home/HomeBuildOption.vue";
 import HomeFeedback from "src/components/home/HomeFeedback.vue";
 import imageComponentHelper from "../components/helpers/imageComponentHelper.vue";
 
@@ -76,6 +78,45 @@ function onResize() {
   widthScreen.value = window.innerWidth;
   heightScreen.value = window.innerHeight;
 }
+
+const optionArray = [
+  {
+    id: 1,
+    img: "/images/home/main-banner.png",
+    title:
+      'Строим дома <p style="font-weight:800; text-transform: uppercase">Под ключ с гарантией</p>',
+    subtitle:
+      "ПрофСтройСервис» предлагает желающим жить за городом построить дом под ключ, который будет выполнен в соответствии со всеми требованиями. Мы занимаемся возведением строений из разных материалов (кирпича, бруса, газоблоков и т.д.) в нескольких районах Московской области: Воскресенском, Раменском, Коломенском и Домодедовском.",
+  },
+  {
+    id: 2,
+    img: "/images/home/main-banner.png",
+    title:
+      'Проводим устройство <p style="font-weight:800; text-transform: uppercase" class="q-ma-none">Новой кровли</p> или ремонтируем старую',
+    subtitle:
+      "Одним из самых важных этапов строительства дома считается возведение крыши. От того, насколько качественным будет устройство кровли, зависит комфорт проживания людей. Наша компания предлагает выполнить кровельные работы в Воскресенском, Раменском, Коломенском и Домодедовском районах Московской области.",
+  },
+  {
+    id: 3,
+    img: "/images/home/main-banner.png",
+    title:
+      'СТРОИМ РАЗЛИЧНЫЕ ФУНДАМЕНТЫ <p style="font-weight:800; text-transform: uppercase">ПО СОВРЕМЕННЫМ ТЕХНОЛОГИЯМ</p>',
+    subtitle:
+      "Всем известно, что основой надежности и долговечности любого строения является фундамент. В нашей компании «ПрофСтойСервис» желающие могут заказать фундамент под ключ в нескольких районах Подмосковья. В их числе Воскресенский, Раменский, Коломенский и Домодедовский.",
+  },
+  {
+    id: 4,
+    img: "/images/home/main-banner.png",
+    title:
+      'СТРОИМ ЗАБОРЫ ВОРОТА, НАВЕСЫ <p style="font-weight:800; text-transform: uppercase">В СРОК И С ГАРАНТИЕЙ</p>',
+    subtitle:
+      "Одним из самых важных этапов строительства дома считается возведение крыши. От того, насколько качественным будет устройство кровли, зависит комфорт проживания людей. Наша компания предлагает выполнить кровельные работы в Воскресенском, Раменском, Коломенском и Домодедовском районах Московской области.",
+  },
+];
+
+const handleBtnClick = (item: ConstructionItem) => {
+  console.log("Клик по кнопке для элемента:", item.id);
+};
 
 onMounted(() => window.addEventListener("resize", onResize));
 onBeforeUnmount(() => window.removeEventListener("resize", onResize));

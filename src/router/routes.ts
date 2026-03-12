@@ -7,13 +7,33 @@ const routes: RouteRecordRaw[] = [
     children: [
       { path: '', component: () => import('pages/HomePage.vue') },
       {
-        path: '/doma',
+        path: 'doma',
         component: () => import('pages/DomaMainPage.vue'),
         children: [
           {
-            path: 'doma-iz-brusa',
-            name: 'doma-iz-brusa',
-            component: () => import('src/pages/DomaPage/DomaIzBrusaPage.vue'),
+            path: 'timber',
+            name: 'doma-timber',
+            component: () => import('src/pages/DomaPage/HousesTimber.vue'),
+          },
+          {
+            path: 'brick',
+            name: 'doma-brick',
+            component: () => import('src/pages/DomaPage/HousesBrick.vue'),
+          },
+          {
+            path: 'blocks',
+            name: 'doma-blocks',
+            component: () => import('src/pages/DomaPage/HousesBlocks.vue'),
+          },
+          {
+            path: 'frame-panel',
+            name: 'doma-frame-panel',
+            component: () => import('src/pages/DomaPage/HousesFramePanel.vue'),
+          },
+          {
+            path: 'ceramic',
+            name: 'doma-ceramic',
+            component: () => import('src/pages/DomaPage/HousesCeramic.vue'),
           },
         ],
       },

@@ -15,18 +15,6 @@
       >
         МЕНЮ
       </q-btn>
-      <q-separator
-        v-if="widthScreen > 768"
-        color="white"
-        vertical
-        align="left"
-        :style="{
-          height: heightScreen + 'px',
-          position: 'fixed',
-          left: '100px',
-        }"
-        style="z-index: 99"
-      />
       <q-dialog
         square
         maximized

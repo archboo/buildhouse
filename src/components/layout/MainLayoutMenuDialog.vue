@@ -45,31 +45,35 @@
             <q-item-section>
               <header-toolbar-link
                 :class="widthScreen < 768 ? 'q-px-none' : ''"
-                link="/doma/doma-iz-brusa"
+                link="/doma/timber"
                 label="Дома из бруса"
                 class="dialog__menu-sub__menu q-py-none q-my-none"
               />
               <header-toolbar-link
+                disable
                 :class="widthScreen < 768 ? 'q-px-none' : ''"
-                link="/doma/doma-iz-kirpicha"
+                link="/doma/brick"
                 label="Дома из кирпича"
                 class="dialog__menu-sub__menu q-py-none q-my-none"
               />
               <header-toolbar-link
+                disable
                 :class="widthScreen < 768 ? 'q-px-none' : ''"
-                link="/doma/doma-iz-gazoblokov"
+                link="/doma/blocks"
                 label="Дома из газоблоков"
                 class="dialog__menu-sub__menu q-py-none q-my-none"
               />
               <header-toolbar-link
+                disable
                 :class="widthScreen < 768 ? 'q-px-none' : ''"
-                link="/doma/karkasno-schitovye-doma-pod-klyuch"
+                link="/doma/frame-panel"
                 label="Каркасно-щитовые дома"
                 class="dialog__menu-sub__menu q-py-none q-my-none"
               />
               <header-toolbar-link
+                disable
                 :class="widthScreen < 768 ? 'q-px-none' : ''"
-                link="/doma/doma-iz-keramicheskih-blokov"
+                link="/doma/ceramic"
                 label="Дома из керамических блоков"
                 class="dialog__menu-sub__menu q-py-none q-my-none"
               />
@@ -86,6 +90,7 @@
               link="/katalog-proektov"
               label="Готовые проекты"
               class="q-ma-none q-py-none"
+              disable
             />
           </q-item-section>
         </q-item>
@@ -95,6 +100,7 @@
               :class="widthScreen < 768 ? 'q-px-none' : ''"
               link="/fundament"
               label="Фундамент"
+              disable
             />
           </q-item-section>
         </q-item>
@@ -104,6 +110,7 @@
               link="/krovlya"
               label="Кровля"
               :class="widthScreen < 768 ? 'q-px-none' : ''"
+              disable
             />
           </q-item-section>
         </q-item>
@@ -113,6 +120,7 @@
               link="/prochee"
               label="Прочее"
               :class="widthScreen < 768 ? 'q-px-none' : ''"
+              disable
             />
           </q-item-section>
         </q-item>
@@ -122,6 +130,7 @@
               link="/o-nas"
               label="О нас"
               :class="widthScreen < 768 ? 'q-px-none' : ''"
+              disable
             />
           </q-item-section>
         </q-item>
